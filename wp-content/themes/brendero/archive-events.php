@@ -24,7 +24,7 @@
     <script type="text/javascript">
     const locations = <?php echo json_encode($locationsArray); ?>;
     const map = L.map('map', {
-        center: [51.505, -0.09],
+        center: [51.0852851, 3.6637481999999864],
         zoom: 13
     });
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -35,14 +35,11 @@
     for(var key in locations) {
         const res = locations[key].split(",");
         L.marker([parseFloat(res[0]),parseFloat(res[1])]).addTo(map)
-        .bindPopup(key)
-        .openPopup()
-        .onclick(markerOnClick(key));
+        .on("click", function() {
+            window.location = key;
+        });
     }
     
-    function markerOnClick(url) {
-        
-    }
 
 
     </script>
